@@ -1,4 +1,4 @@
-name: x86_64 and i686 release builds
+name: i686 release builds
 
 on:
   push:
@@ -26,10 +26,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        arch: [x86_64, i686]
-        threads: [posix, win32]
-        exceptions: [seh, dwarf]
-        msvcrt: [msvcrt, ucrt]
+        arch: [i686]
+        threads: [posix]
+        exceptions: [sjlj]
+        msvcrt: [ucrt]
         exclude:
           - arch: x86_64
             exceptions: dwarf
@@ -39,7 +39,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        repository: 'niXman/mingw-builds'
+        repository: 'tomay3000/mingw-builds'
         ref: 'develop'
 
     - uses: msys2/setup-msys2@v2
